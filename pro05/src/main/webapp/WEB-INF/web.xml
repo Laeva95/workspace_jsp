@@ -11,4 +11,17 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.xhtml</welcome-file>
   </welcome-file-list>
+  
+  	<!-- FirstServlet.class를 요청할 주소 매핑 작업 설정 -->
+  	<!-- servlet-name 에 같은 이름을 입력하여 연결 -->
+  		<!-- 1. FirstServlet 클래스의 실제 경로를 등록 -->
+  		<servlet>
+  			<servlet-name>aaa</servlet-name>
+  			<servlet-class>sec01.ex01.FirstServlet</servlet-class> <!-- 실제 요청할 서블릿 클래스 주소 경로 -->
+  		</servlet>
+  		<!-- 2. FirstServlet 클래스의 실제 경로와 웹 브라우저에서 요청하는 가짜 주소를 매핑 -->
+  		<servlet-mapping>
+  			<servlet-name>aaa</servlet-name>
+  			<url-pattern>/first</url-pattern> <!-- http://localhost:8181/pro05/first 웹 브라우저에서 요청 할 가짜 주소 -->
+  		</servlet-mapping>
 </web-app>
