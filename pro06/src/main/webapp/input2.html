@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+	<body>
+		<!-- 
+			서블릿으로 요청하는 클라이언트가 보는 디자인 화면
+			매핑 주소: http://localhost:8181/pro06/input
+		 -->
+		 <form action="input2" method="get" name="frmInput">
+		 	아이디 : <input type="text" name="user_id" value=""> <br>
+		 	비밀번호 : <input type="password" name="user_pw" value=""> <br>
+		 	
+		 	<!-- 
+		 		input 태그의 체크박스를 같은 name 속성 값으로 여러개 작성하면 
+		 		체크되어있는 value 값들만 전송됨
+		 	 -->
+		 	<input type="checkbox" name="subject" value="java">자바
+		 	<input type="checkbox" name="subject" value="c">씨
+		 	<input type="checkbox" name="subject" value="jsp">제이에스피
+		 	<input type="checkbox" name="subject" value="android">안드로이드
+		 	
+		 	<br><br>
+		 	
+		 	<input type="submit" value="전송요청"> <input type="reset" value="다시입력">
+		 </form>
+	</body>
+</html>
