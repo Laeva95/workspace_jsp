@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	
+	<script type="text/javascript">
+		// 아이디와 비밀번호를 입력한 후에 로그인 요청 버튼을 눌렀을 때 호출되는 함수
+		// 작성해야 할 내용을 모두 작성했는지 검사(유효성 검사)
+		// 모두 입력했다면 form 태그의 action 속성에 설정된 pro06/login5 매핑 주소에 의해 서블릿 페이지에 요청 전송
+		function fn_validate(event){
+			// 기본 이벤트 차단
+			event.preventDefault();
+			
+			// form 태그의 name 속성 값을 이용해서 요소를 가져옴
+			let frmLogin = document.login5;
+			
+			// form 태그 내부에 작성된 자식 input 태그 2개에 입력한 value 속성에 설정된 값 가져옴
+			let user_id = frmLogin.user_id.value;
+			let user_pw = frmLogin.user_pw.value;
+			
+			// 아이디 또는 비밀번호 둘 중 하나라도 입력하지 않았다면
+			if((user_id.length == 0 || user_id == "") || (user_pw.length == 0 || user_pw == "")){
+				alert("아이디와 비밀번호를 입력해주세요!");
+			}
+			else{
+				// 자바 스크립트 언어의 문법으로 아래의 form 태그 요청 전송 방식을 get -> post 로 변경
+				frmLogin.method = "post";
+				
+				// 자바 스크립트 언어의 문법으로 form 태그의 action 속성에 설정된 login -> login5로 설정
+				frmLogin.action = "login5";
+
+				// 자바 스크립트 언어의 문법으로 form 태그의 action 속성에 설정된 login5 값을 이용해
+				// 서블릿 클래스에 로그인 요청 시도
+				frmLogin.submit();
+			}
+		}
+		
+	</script>
+</head>
+<body>
+	<!-- 
+		form 태그: 입력한 값을 서버 페이지로 전송
+		action: 전송 목적이 주소
+		method: get 또는 post 전송 방식으로 전송 하겠음을 결정
+		name: form 태그에 식별 할 수 있는 이름을 부여
+	-->
+	<form action="login5" method="post" name="login5">
+		<!-- 
+			type="hidden" 속성 값을 갖는 요소는 브라우저에 노출되지 않음
+			요청할 값만 묶어서 HttpServletRequest 객체 메모리에 담아서 전송
+		 -->
+		<input type="hidden" name="user_address" value="서울시 성북구">
+	
+		<!-- 아이디 입력칸, name="user_id"가 전송될 데이터의 이름표 -->
+		아이디 : <input type="text" name="user_id"> <br>
+		
+		<!-- 비밀번호 입력칸, name="user_pw"가 전송될 데이터의 이름표 -->
+		비밀번호 : <input type="password" name="user_pw"> <br>
+		
+		<!-- submit: 요청 버튼. form 태그 내부의 입력값을 action 속성의 login 매핑 주소의 서블릿 전송 요청 -->
+		<input type="button" value="로그인 요청" onclick="fn_validate(event);">
+		
+		<!-- reset: 초기화 버튼. form 태그 내부 입력값을 초기화함 -->
+		<input type="reset" value="초기화">
+		
+	</form>
+	
+	
+</body>
+</html>

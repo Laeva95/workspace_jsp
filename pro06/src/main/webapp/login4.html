@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<!-- 
+		form 태그: 입력한 값을 서버 페이지로 전송
+		action: 전송 목적이 주소
+		method: get 또는 post 전송 방식으로 전송 하겠음을 결정
+		name: form 태그에 식별 할 수 있는 이름을 부여
+	-->
+	<form action="login4" method="get" name="frmLogin">
+		<!-- 아이디 입력칸, name="user_id"가 전송될 데이터의 이름표 -->
+		아이디 : <input type="text" name="user_id"> <br>
+		
+		<!-- 비밀번호 입력칸, name="user_pw"가 전송될 데이터의 이름표 -->
+		비밀번호 : <input type="password" name="user_pw"> <br>
+		
+		<!-- submit: 요청 버튼. form 태그 내부의 입력값을 action 속성의 login 매핑 주소의 서블릿 전송 요청 -->
+		<input type="submit" value="로그인">
+		
+		<!-- reset: 초기화 버튼. form 태그 내부 입력값을 초기화함 -->
+		<input type="reset" value="초기화">
+		
+	</form>
+</body>
+</html>
