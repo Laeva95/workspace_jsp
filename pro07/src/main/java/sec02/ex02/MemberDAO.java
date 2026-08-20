@@ -87,4 +87,40 @@ public class MemberDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	// t_member 테이블에 새로운 회원을 추가하는 기능의 메서드
+	public int addMember(MemberVO vo) {
+		int result = 0;
+		try {
+			// 커넥션풀에서 커넥션 객체 가져오기
+			con = dataSource.getConnection();
+			
+			String id = vo.getId();
+			String pwd = vo.getPwd();
+			String name = vo.getName();
+			String email = vo.getEmail();
+
+			String query = "INSERT INTO t_member (id, pwd, name, email)" +
+							"VALUES(?, ?, ?, ?)";
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, id);
+			pstmt.setString(2, pwd);
+			pstmt.setString(3, name);
+			pstmt.setString(4, email);
+			
+			// executeUpdate(): INSERT 쿼리문이 성공하면 1, 실패하면 0 반환
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {	
+			e.printStackTrace();
+		} finally {
+			// 생성했던 DB 관련 객체들 메모리 해제
+			resourceClose();
+		}
+		
+		return result;
+	}
+	
 }

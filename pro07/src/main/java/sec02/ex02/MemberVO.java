@@ -30,6 +30,16 @@ public class MemberVO {
 		System.out.println("MemberVO 클래스의 기본 생성자 호출");
 	}
 	
+	// joinDate 를 제외한 변수를 초기화하는 생성자
+	public MemberVO(String id, String pwd, String name, String email) {
+		super();
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.email = email;
+	}
+
+
 	// 2단계. getter / setter 메소드 생성
 	public String getId() {					// id
 		return id;
