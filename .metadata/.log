@@ -5571,3 +5571,12 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.wst.server.core 4 0 2026-08-20 12:25:17.583
 !MESSAGE Server Tomcat v9.0 Server at localhost failed to start.
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-08-20 14:33:01.717
+!MESSAGE Could not get language server due to timeout after 50 milliseconds
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-08-20 14:33:01.771
+!MESSAGE Could not get language server due to timeout after 50 milliseconds
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-08-20 14:33:01.824
+!MESSAGE Could not get language server due to timeout after 50 milliseconds
