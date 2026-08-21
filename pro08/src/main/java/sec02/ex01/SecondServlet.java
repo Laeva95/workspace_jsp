@@ -1,4 +1,4 @@
-package sec01.ex03;
+package sec02.ex01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ public class SecondServlet extends HttpServlet{
 		
 		// 응답할 메세지를 생성해서 출력
 		out.print("<html><body>");
-			out.print("location.href 속성 설정 포워딩으로 재요청");
+			out.print("RequestDispatcher 객체를 통해 포워딩 당한 SecondServlet 응답 페이지: " + request.getParameter("name"));
 		out.print("</body></html>");
 		
 	}

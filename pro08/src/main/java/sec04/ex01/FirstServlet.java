@@ -1,8 +1,9 @@
-package sec01.ex03;
+package sec04.ex01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,21 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 public class FirstServlet extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 다른 서블릿 서버 페이지를 재요청하는 메소드
-		response.setContentType("text/html; charset=utf-8");
+		// 서블릿 간 문자데이터를 공유해야 하므로 한글이 깨지지 않도록 설정
+		request.setCharacterEncoding("utf-8");
 		
-		PrintWriter out = response.getWriter();
+		// setAttribute(): 키, 값을 연결해서 저장하는 메소드
+		request.setAttribute("address", "서울시 성북구");
 		
-		out.print("<script type='text/javascript'>");
-		
-		out.print("window.alert('회원 가입 성공!');");
-		
-		out.print("window.alert('메인 화면으로 이동!');");
-		
-		out.print("location.href='second';");
-		
-		out.print("</script>");
-		
+		// SecondServlet 요청
+		response.sendRedirect("second");
 		
 	}
 }
