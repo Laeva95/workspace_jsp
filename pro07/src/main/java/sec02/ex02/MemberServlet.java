@@ -2,6 +2,7 @@ package sec02.ex02;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,6 +32,7 @@ public class MemberServlet extends HttpServlet{
 		// MemberServlet 객체가 어떤 요청을 받았는지 확인
 		String command = request.getParameter("command");
 		
+		// addMember 요청을 받았을 때의 처리
 		if(command != null && command.equals("addMember")) {
 			String _id = request.getParameter("id");
 			String _pwd = request.getParameter("pwd");
@@ -43,9 +45,35 @@ public class MemberServlet extends HttpServlet{
 			int result = dao.addMember(vo);
 			
 			
+		// delMember 요청을 받았을 때의 처리
+		}else if(command != null && command.equals("delMember")) {
+			String id = request.getParameter("id");
 			
-		}else if(command != null && command.equals("delMember")){
+			dao.delMember(id);
+		}else if(command != null && command.equals("modMember")) {
+			String id = request.getParameter("id");
 			
+			// id 값을 통해 수정할 회원의 정보가 담긴 VO 객체 생성
+			MemberVO vo = dao.modMember(id);
+			
+			// 한글 이름을 주소에 전달 할 수 있게 변환(URL 인코딩)
+			// 인코딩 하지 않으면 한글이 깨질 수 있음
+			String encName = URLEncoder.encode(vo.getName(), "utf-8");
+			
+			// 브라우저로 응답할 데이터 유형을 설정 후 출력 스트림 생성
+			response.setContentType("text/html; charset=utf-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			// 재요청 자바스크립트를 문자열로 조립해서 브라우저 응답으로 출력
+			out.print("<script>");
+				out.print("location.href = '/pro07/memberModForm.html"
+						+ "?id=" + vo.getId() 		
+						+ "&pwd=" + vo.getPwd() 
+						+ "&name=" + encName			// vo.getName() 이 아닌 encName 을 입력. 한글이 깨질 수 있기 때문
+						+ "&email=" + vo.getEmail() + "';");
+			out.print("</script>");
+			return;
 		}
 		
 		
@@ -68,9 +96,11 @@ public class MemberServlet extends HttpServlet{
 								+ vo.getName() + "</td><td>"
 								+ vo.getEmail() + "</td><td>"
 								+ vo.getJoinDate() + "</td><td>"
-								+ "<a href='pro07/member4?command=delMember&id=" + vo.getId() + "'>삭제</a></td><td>"
-								+ "<a href='pro07/member4?command=delMember&id=" + vo.getId() + "'>수정</a></td>");
+								+ "<a href='/pro07/member4?command=delMember&id=" + vo.getId() + "'>삭제</a></td><td>"
+								+ "<a href='/pro07/member4?command=modMember&id=" + vo.getId() + "'>수정</a></td>");
 		}
-		out.print("</table></body></html>");
+		out.print("</table>");
+		out.print("<a href='/pro07/memberForm.html'>" + "회원 가입" + "</a>");
+		out.print("</body></html>");
 	}
 }

@@ -123,4 +123,62 @@ public class MemberDAO {
 		return result;
 	}
 	
+	public void delMember(String id) {
+		try {
+			con = dataSource.getConnection();
+			
+			String query = "DELETE FROM t_member WHERE id = ?";
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, id);
+			
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 자원 해제
+			resourceClose();
+		}
+	}
+	
+	public MemberVO modMember(String id) {
+		MemberVO vo = null;
+		
+		try {
+			// 커넥션풀에서 커넥션 객체 할당
+			con = dataSource.getConnection();
+			
+			// 매개 변수 id에 해당하는 멤버 1명 조회를 위한 쿼리문
+			String query = "SELECT * FROM t_member WHERE id = ?";
+			
+			// preparedStatement 객체 생성
+			pstmt = con.prepareStatement(query);
+			
+			// 쿼리문의 ? 대신 매개 변수 id 설정
+			pstmt.setString(1, id);
+			
+			// 쿼리문을 실행하여 rs 객체에 저장
+			rs = pstmt.executeQuery();
+			
+			// rs의 첫번째 행에서 회원 정보를 얻어 VO 객체에 저장
+			if(rs.next()) {
+				vo = new MemberVO();
+				
+				vo.setId(rs.getString("id"));
+				vo.setPwd(rs.getString("pwd"));
+				vo.setName(rs.getString("name"));
+				vo.setEmail(rs.getString("email"));
+				vo.setJoinDate(rs.getDate("joindate"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 사용한 메모리 자원 해제
+			resourceClose();
+		}
+		// 정보가 저장된 VO 객체 반환
+		return vo;
+	}
+	
 }
