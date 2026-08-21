@@ -58,7 +58,7 @@
 				//아래의 <form></form>선택해서 가져와 
 				//method속성에 "post"로 설정하고,
 				//action속성에 "member3"로 설정하고 
-				//submit(); 함수를 호출해  MemberServlet서블릿으로 회원가입 요청 합니다.
+				//submit(); 함수를 호출해  MemberServlet서블릿으로 회원 수정 요청 합니다.
 				formTag.method = "post";
 				formTag.action = "member4";
 				formTag.submit();
@@ -78,12 +78,12 @@
 	     서블릿에게 알려줄수 있게 input type="hidden"으로 하고 value="addMember"
 	   name="command"로 작성해 놓자.
 	 -->
-		<input type="hidden" name="command" value="addMember" >
+		<input type="hidden" name="command" value="modMember2" >
 			
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id"></td> <!-- 입력한 아이디를 서블릿으로 전송함 -->
+				<td><input type="text" name="id" readonly></td> <!-- 입력한 아이디를 서블릿으로 전송함 -->
 			</tr>
 			<tr>
 				<td>비밀번호</td>

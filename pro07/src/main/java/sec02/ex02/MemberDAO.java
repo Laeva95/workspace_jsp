@@ -180,5 +180,39 @@ public class MemberDAO {
 		// 정보가 저장된 VO 객체 반환
 		return vo;
 	}
+
+	// 회원 정보 수정 요청을 DB에 전달하고 성공했는지 여부를 반환하는 메소드
+	public int updateMember(MemberVO vo) {
+		int result = 0;
+		
+		try {
+			// 커넥션풀에서 미리 생성된 커넥션 객체 가져오기
+			con = dataSource.getConnection();
+			
+			// 회원 정보 수정을 위한 UPDATE 쿼리문 생성
+			String query = "UPDATE t_member SET pwd = ?, name = ?, email = ? WHERE id = ?";
+			
+			// query 변수의 쿼리문을 로드한 PreparedStatement 객체 생성
+			pstmt = con.prepareStatement(query);
+			
+			// 수정값과 조건값의 순서에 따라 데이터 입력
+			pstmt.setString(1, vo.getPwd());
+			pstmt.setString(2, vo.getName());
+			pstmt.setString(3, vo.getEmail());
+			pstmt.setString(4, vo.getId());
+			
+			// 쿼리문을 DB에 전달하여 실행하고 결과값을 result 변수에 저장
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			// 사용한 메모리 자원 해제
+			resourceClose();
+		}
+		// 회원 정보 수정이 성공했는지 여부 반환
+		// 1 = 성공 0 = 실패
+		return result;
+	}
 	
 }

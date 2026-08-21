@@ -50,6 +50,7 @@ public class MemberServlet extends HttpServlet{
 			String id = request.getParameter("id");
 			
 			dao.delMember(id);
+		// modMember 요청을 받았을 때의 처리
 		}else if(command != null && command.equals("modMember")) {
 			String id = request.getParameter("id");
 			
@@ -74,6 +75,31 @@ public class MemberServlet extends HttpServlet{
 						+ "&email=" + vo.getEmail() + "';");
 			out.print("</script>");
 			return;
+		// modMember2 요청을 받았을 때의 처리
+		}else if(command != null && command.equals("modMember2")) {
+			// 수정된 회원의 정보 받아오기
+			String _id = request.getParameter("id");
+			String _pwd = request.getParameter("pwd");
+			String _name = request.getParameter("name");
+			String _email = request.getParameter("email");
+			
+			// 수정된 회원의 정보가 담긴 vo 객체 생성
+			MemberVO vo = new MemberVO(_id, _pwd, _name, _email);
+			
+			// vo 객체를 전달해서 회원 정보 수정
+			int result = dao.updateMember(vo);
+			
+			// 회원 정보가 수정이 되었는지 확인하기 위해 조회 재요청
+			// 브라우저로 응답할 데이터 유형을 설정 후 출력 스트림 생성
+			response.setContentType("text/html; charset=utf-8");
+			
+			PrintWriter out = response.getWriter();
+			
+			out.print("<script>");
+				out.print("alert('회원 정보가 수정되었습니다.');");
+				out.print("location.href = '/pro07/member4';");
+			out.print("</script>");
+			
 		}
 		
 		
@@ -96,7 +122,7 @@ public class MemberServlet extends HttpServlet{
 								+ vo.getName() + "</td><td>"
 								+ vo.getEmail() + "</td><td>"
 								+ vo.getJoinDate() + "</td><td>"
-								+ "<a href='/pro07/member4?command=delMember&id=" + vo.getId() + "'>삭제</a></td><td>"
+								+ "<a href='/pro07/member4?command=delMember&id=" + vo.getId() + "' onclick=\"return confirm('정말 삭제하시겠습니까?');\">삭제</a></td><td>"
 								+ "<a href='/pro07/member4?command=modMember&id=" + vo.getId() + "'>수정</a></td>");
 		}
 		out.print("</table>");
