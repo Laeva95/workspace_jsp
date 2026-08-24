@@ -26,4 +26,31 @@
 		<param-name>menu_goods</param-name>
 		<param-value>상품조회 상품등록 상품수정 상품삭제</param-value>
 	</context-param>
+	<!-- 서블릿 클래스 1개를 톰캣 서버에 등록하는 태그 -->
+	<servlet>
+		<servlet-name>
+			EmailService
+		</servlet-name>
+		<servlet-class>
+			com.example.servlet.EmailServlet
+		</servlet-class>
+		<init-param>
+			<param-name>serverAddress</param-name>
+			<param-value>smtp.example.com</param-value>
+		</init-param>
+		<init-param>
+			<param-name>serverPort</param-name>
+			<param-value>587</param-value>
+		</init-param>
+	</servlet>
+	<!-- 등록한 서블릿 클래스 요청 URL 매핑 태그 -->
+	<servlet-mapping>
+		<servlet-name>
+			EmailService
+		</servlet-name>
+		<url-pattern>
+			/sendEmail
+		</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
