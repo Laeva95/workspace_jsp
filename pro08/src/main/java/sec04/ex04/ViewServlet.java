@@ -15,9 +15,16 @@ import javax.servlet.http.HttpServletResponse;
 // - 전달 받은 회원 목록을 출력하는 서블릿 클래스
 @WebServlet("/viewMembers2")
 public class ViewServlet extends HttpServlet{
-	
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandle(req, resp);
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandle(req, resp);
+	}
+	
+	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 한글 깨짐 방지 설정
 		request.setCharacterEncoding("utf-8");
 		

@@ -43,7 +43,10 @@ public class MemberServlet extends HttpServlet{
 			delMember(request);
 			// 회원 정보 수정 요청
 		} else if("modMember".equals(command)) {
-			modMember(request);
+			modMember(request, response);
+			return;
+		} else if("modMember2".equals(command)) {
+			modMember2(request, response);
 		}
 		
 		// 전체 회원 조회를 위한 ViewServlet 포워딩
@@ -70,11 +73,52 @@ public class MemberServlet extends HttpServlet{
 		memberDAO.delMember(id);
 	}
 	
-	private void modMember(HttpServletRequest request) {
+	private void modMember(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// 기존 회원 정보를 수정하는 메소드
 		MemberVO vo = memberDAO.modMember(request.getParameter("id"));
 		
+		// 한글 이름을 주소에 전달 할 수 있게 변환(URL 인코딩)
+		// 인코딩 하지 않으면 한글이 깨질 수 있음
+		String encName = URLEncoder.encode(vo.getName(), "utf-8");
 		
+		// 브라우저로 응답할 데이터 유형을 설정 후 출력 스트림 생성
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		// 재요청 자바스크립트를 문자열로 조립해서 브라우저 응답으로 출력
+		out.print("<script>");
+			out.print("location.href = '/pro08/memberModForm.html"
+					+ "?id=" + vo.getId() 		
+					+ "&pwd=" + vo.getPwd() 
+					+ "&name=" + encName			// vo.getName() 이 아닌 encName 을 입력. 한글이 깨질 수 있기 때문
+					+ "&email=" + vo.getEmail() + "';");
+		out.print("</script>");
+	}
+	
+	private void modMember2(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// 수정된 회원의 정보 받아오기
+		String _id = request.getParameter("id");
+		String _pwd = request.getParameter("pwd");
+		String _name = request.getParameter("name");
+		String _email = request.getParameter("email");
+		
+		// 수정된 회원의 정보가 담긴 vo 객체 생성
+		MemberVO vo = new MemberVO(_id, _pwd, _name, _email);
+		
+		// vo 객체를 전달해서 회원 정보 수정
+		int result = memberDAO.updateMember(vo);
+		
+		// 회원 정보가 수정이 되었는지 확인하기 위해 조회 재요청
+		// 브라우저로 응답할 데이터 유형을 설정 후 출력 스트림 생성
+		response.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = response.getWriter();
+		
+		out.print("<script>");
+			out.print("alert('회원 정보가 수정되었습니다.');");
+			out.print("location.href = '/pro08/member5';");
+		out.print("</script>");
 	}
 	
 	private void forwardListMembers(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
