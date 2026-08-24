@@ -41,11 +41,11 @@ public class ViewServlet extends HttpServlet{
 								+ vo.getName() + "</td><td>"
 								+ vo.getEmail() + "</td><td>"
 								+ vo.getJoinDate() + "</td><td>"
-								+ "<a href='/pro07/member4?command=delMember&id=" + vo.getId() + "' onclick=\"return confirm('정말 삭제하시겠습니까?');\">삭제</a></td><td>"
-								+ "<a href='/pro07/member4?command=modMember&id=" + vo.getId() + "'>수정</a></td>");
+								+ "<a href='/pro08/member5?command=delMember&id=" + vo.getId() + "' onclick=\"return confirm('정말 삭제하시겠습니까?');\">삭제</a></td><td>"
+								+ "<a href='/pro08/member5?command=modMember&id=" + vo.getId() + "'>수정</a></td>");
 		}
 		out.print("</table>");
-		out.print("<a href='/pro07/memberForm.html'>" + "회원 가입" + "</a>");
+		out.print("<a href='/pro08/memberForm.html'>" + "회원 가입" + "</a>");
 		out.print("</body></html>");
 	}
 	

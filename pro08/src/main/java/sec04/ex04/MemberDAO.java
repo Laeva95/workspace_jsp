@@ -32,21 +32,13 @@ public class MemberDAO {
 		
 		ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 		
-		try {
-			// 커넥션 풀에서 커넥션 객체 하나 가져오기
-			// 객체를 새로 생성하는 것이 아니라, 이미 생성된 객체 하나를 가져오는 것
-			con = dataSource.getConnection();
-			
-			// 순서 5. 실행할 SQL 문장을 문자열로 작성
-			String query = "SELECT * FROM t_member";
-			
-			// 순서 5.1 순서 4 대신 SQL 문장을 미리 전달하며 PreparedStatement 객체 생성
-			pstmt = con.prepareStatement(query);
-			
-			// 순서 6. SQL 을 DB로 전송. 결과 커서 받기
-			// 처음 받아오는 순간 rs 커서는 첫번째 행 직전 위치에 있음
-			rs = pstmt.executeQuery();
+		// 순서 5. 실행할 SQL 문장을 문자열로 작성
+		String query = "SELECT * FROM t_member";
 		
+		try(Connection con = dataSource.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery()) {
+
 			// 순서 7. 커서를 한 행씩 이동시키며 데이터 읽기
 			// rs.next(): rs 커서를 다음 행으로 이동시키고 true 반환. 만약 다음 행이 존재하지 않는다면 false 반환
 			while(rs.next()) {
@@ -62,9 +54,6 @@ public class MemberDAO {
 			
 		}catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			// 순서 8. 성공/예외 발생과 상관 없이 DB 연결 자원 반납
-			resourceClose();
 		}
 		return list;
 	}
@@ -142,16 +131,11 @@ public class MemberDAO {
 	public int updateMember(MemberVO vo) {
 		int result = 0;
 		
-		try {
-			// 커넥션풀에서 미리 생성된 커넥션 객체 가져오기
-			con = dataSource.getConnection();
-			
-			// 회원 정보 수정을 위한 UPDATE 쿼리문 생성
-			String query = "UPDATE t_member SET pwd = ?, name = ?, email = ? WHERE id = ?";
-			
-			// query 변수의 쿼리문을 로드한 PreparedStatement 객체 생성
-			pstmt = con.prepareStatement(query);
-			
+		// 회원 정보 수정을 위한 UPDATE 쿼리문 생성
+		String query = "UPDATE t_member SET pwd = ?, name = ?, email = ? WHERE id = ?";
+		
+		try (Connection con = dataSource.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(query)){
 			// 수정값과 조건값의 순서에 따라 데이터 입력
 			pstmt.setString(1, vo.getPwd());
 			pstmt.setString(2, vo.getName());
@@ -163,9 +147,6 @@ public class MemberDAO {
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			// 사용한 메모리 자원 해제
-			resourceClose();
 		}
 		// 회원 정보 수정이 성공했는지 여부 반환
 		// 1 = 성공 0 = 실패
