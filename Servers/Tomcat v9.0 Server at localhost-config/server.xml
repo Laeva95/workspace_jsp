@@ -167,7 +167,8 @@
       <Context docBase="pro06" path="/pro06" reloadable="true" source="org.eclipse.jst.jee.server:pro06"/>
       <Context docBase="pro07" path="/pro07" reloadable="true" source="org.eclipse.jst.jee.server:pro07"/>
       <Context docBase="pro08" path="/pro08" reloadable="true" source="org.eclipse.jst.jee.server:pro08"/>
-      <Context docBase="pro09" path="/pro09" reloadable="true" source="org.eclipse.jst.jee.server:pro09"/></Host>
+      <Context docBase="pro09" path="/pro09" reloadable="true" source="org.eclipse.jst.jee.server:pro09"/>
+      <Context docBase="pro10" path="/pro10" reloadable="true" source="org.eclipse.jst.jee.server:pro10"/></Host>	
     </Engine>
   </Service>
 </Server>
