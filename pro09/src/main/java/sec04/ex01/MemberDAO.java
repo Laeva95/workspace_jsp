@@ -221,6 +221,22 @@ public class MemberDAO {
 		try {
 			con = dataSource.getConnection();
 			
+			// id와 pwd가 동일한 행의 개수를 찾아서 decode 함수를 통해 1개라면 true, 아니라면 false 반환
+			// decode(검사할 값, 비교값, 반환값, 기본값): 검사할 값이 비교값에 해당되면 반환값을, 아니라면 기본값을 반환 
+			String query = "SELECT decode( count(*), 1, 'true', 'false') as result FROM t_member "
+					+ "WHERE id = ? and pwd = ?";
+			
+			pstmt = con.prepareStatement(query);
+			
+			pstmt.setString(1, memberVO.getId());
+			pstmt.setString(2, memberVO.getPwd());
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				result = Boolean.parseBoolean(rs.getString("result"));
+			}
+			
 		} catch (Exception e) {
 			System.out.println("MemberDAO.java의 isExisted 메소드 내부에서 오류 발생");
 		} finally {
