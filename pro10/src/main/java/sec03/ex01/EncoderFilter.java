@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 @WebFilter("/*")
 public class EncoderFilter extends HttpFilter implements Filter {
 	ServletContext servletContext;
-	// init: 
+	
 	@Override
     public void init(FilterConfig fConfig) throws ServletException {
+		super.init(fConfig);
+		
 		System.out.println("utf-8 방식으로 인코딩 시작...");
 		servletContext = getServletContext();
 	}  
@@ -33,7 +35,7 @@ public class EncoderFilter extends HttpFilter implements Filter {
 		
 		String contextPath = ((HttpServletRequest)request).getContextPath();
 		String pathInfo = ((HttpServletRequest)request).getRequestURI();
-		String realPath = request.getRealPath(pathInfo);
+		String realPath = request.getServletContext().getRealPath(pathInfo);
 		
 		String mesg = "ContextPath: " + contextPath
 					+ "\nURI 정보: " + pathInfo
@@ -43,19 +45,20 @@ public class EncoderFilter extends HttpFilter implements Filter {
 		
 		long begin = System.currentTimeMillis();
 		
-		for(int i = 0; i < 1000; i++) {
-			System.out.println(i);
-		}
+//		for(int i = 0; i < 1000; i++) {
+//			System.out.println(i);
+//		}
 		
 		// ====== ▲ 요청 시 실행 ▲ ======
 		// =================================================================================
-		// ====== ▼ 응답 시 실행 ▼ ======
 		chain.doFilter(request, response);
-		
+		//==================================================================================
+		// ====== ▼ 응답 시 실행 ▼ ======
 		
 		// 서블릿의 코드가 모두 실행 후 응답 시 실행
 		long end = System.currentTimeMillis();
 		
+		// 작업에 걸린 시간 ms 반환
 		System.out.println("작업 수행시간: " + (end - begin) + "ms");
 		
 	}
