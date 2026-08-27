@@ -1587,3 +1587,42 @@
 2026-08-26 23:57:45.966: [INFO] BookmarksLoadDropped droppedNodes=0
 2026-08-26 23:57:45.966: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
 2026-08-26 23:57:48.464: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:08:45.004: [INFO] CurrentProfilePath: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:08:45.004: [INFO] Profiles total count: 1
+2026-08-27 02:08:45.004: [INFO] Profile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:08:45.004: [INFO] LastUsedProfileDir: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:08:45.004: [INFO] MostRecentlyActiveProfile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:08:45.004: [INFO] OnDoneLoading sync enabled: 0
+2026-08-27 02:08:45.004: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-27 02:08:45.004: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-27 02:08:45.004: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:08:45.089: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:09:59.646: [INFO] CurrentProfilePath: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:09:59.646: [INFO] Profiles total count: 1
+2026-08-27 02:09:59.646: [INFO] Profile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:09:59.646: [INFO] LastUsedProfileDir: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:09:59.646: [INFO] MostRecentlyActiveProfile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:09:59.646: [INFO] OnDoneLoading sync enabled: 0
+2026-08-27 02:09:59.646: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-27 02:09:59.646: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-27 02:09:59.646: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:09:59.784: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:10:19.043: [INFO] CurrentProfilePath: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:10:19.043: [INFO] Profiles total count: 1
+2026-08-27 02:10:19.043: [INFO] Profile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:10:19.043: [INFO] LastUsedProfileDir: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:10:19.043: [INFO] MostRecentlyActiveProfile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:10:19.043: [INFO] OnDoneLoading sync enabled: 0
+2026-08-27 02:10:19.043: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-27 02:10:19.043: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-27 02:10:19.043: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:10:19.130: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-08-27 02:17:13.855: [INFO] CurrentProfilePath: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:17:13.855: [INFO] Profiles total count: 1
+2026-08-27 02:17:13.855: [INFO] Profile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:17:13.855: [INFO] LastUsedProfileDir: C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default
+2026-08-27 02:17:13.855: [INFO] MostRecentlyActiveProfile: name=프로필 1 path=C:\Users\KHBS_D_09\Desktop\workspace_jsp\.metadata\.plugins\org.eclipse.swt\EBWebView\Default lastActive=2026-08-27T00:01:48.869Z
+2026-08-27 02:17:13.855: [INFO] OnDoneLoading sync enabled: 0
+2026-08-27 02:17:13.855: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-08-27 02:17:13.855: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-08-27 02:17:13.855: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

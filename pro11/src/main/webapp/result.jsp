@@ -13,6 +13,7 @@
 		String user_id = request.getParameter("user_id");
 		String user_pw = request.getParameter("user_pw");
 	%>
+	<!-- 사용자가 입력한 아이디 출력 -->
 	<h1>아이디	: <%= user_id %></h1>
 	<h1>비밀번호	: <%= user_pw %></h1>
 </body>
