@@ -1,2 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=pro10/C:\/Program Files\/Apache Software Foundation\/Tomcat 9.0\/apache-tomcat-9.0.100\/lib\/servlet-api.jar=/javadoc_location=/https:\/\/javaee.github.io\/javaee-spec\/javadocs\/=/=/owner.project.facets=/jst.web=/&lt;javax.servlet.http(HttpSessionBindingListener.class[HttpSessionBindingListener" modifiers="1537" timestamp="1787032314054"/>
+</typeInfoHistroy>
