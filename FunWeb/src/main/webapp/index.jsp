@@ -31,7 +31,19 @@
 		<!-- 헤더파일들어가는 곳 -->
 		<header>
 			<div id="login">
+<%
+	String userId = (String)session.getAttribute("userId");
+
+	if(userId == null){
+%>
 				<a href="member/login.jsp">login</a> | <a href="member/join.jsp">join</a>
+<% 
+	} else{
+%>
+				<b><%= userId %>님 환영합니다!</b> | <a href="member/logout.do">logout</a>
+<%
+	}
+%>
 			</div>
 			<div class="clear"></div>
 			<!-- 로고들어가는 곳 -->

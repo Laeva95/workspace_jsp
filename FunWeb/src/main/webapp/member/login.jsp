@@ -21,6 +21,20 @@
 
  </script>
  <![endif]-->
+ <%--
+ 	로그인 실패 안내 메시지 출력
+ 	MemberController 서블릿이 디스패쳐 방식으로 포워딩 할 때 공유받은 
+ 	request 내장 객체에 담아 둔 loginMsg 키에 대응하는 실패 메세지 출력
+  --%>
+ <%
+ 	String loginMsg = (String)request.getAttribute("loginMsg"); 
+ 
+ 	if(loginMsg != null){
+ %>
+ <script type="text/javascript">
+ 	alert("<%= loginMsg %>");
+ </script>
+ <% } %>
 </head>
 <body>
 	<div id="wrap">
@@ -43,7 +57,11 @@
 		<!-- 본문내용 -->
 		<article>
 			<h1>Login</h1>
-			<form action="" id="join">
+			<form action="login.do" id="join" method="post">
+			<!-- 
+				action: 전송 목적지 = 컨트롤러의 로그인 기능
+			 	method: "post": 비밀번호가 주소창에 노출되지 않음
+			 -->
 				<fieldset>
 					<legend>Login Info</legend>
 					<label>User ID</label> <input type="text" name="id"><br>
@@ -51,8 +69,8 @@
 				</fieldset>
 				<div class="clear"></div>
 				<div id="buttons">
-					<input type="button" value="Submit" class="submit"> <input
-						type="button" value="Cancel" class="cancel">
+					<input type=submit value="로그인" class="submit"> 
+					<input type="reset" value="취소" class="cancel">
 				</div>
 			</form>
 		</article>
