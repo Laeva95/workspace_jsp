@@ -36,7 +36,15 @@ public class MemberController extends HttpServlet {
 		
 	}
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		// db와 무관한 메소드
+		HttpSession session = request.getSession(false);
 		
+		// null 체크
+		if(session != null) {
+			session.invalidate();
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 	private void login(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String id = request.getParameter("id");
