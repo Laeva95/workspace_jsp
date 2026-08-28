@@ -22,7 +22,9 @@
 
 <%-- [실습 5-3] 가입 실패 안내 --%>
 <%-- request 에서 "joinMsg" 를 꺼내 String 변수 joinMsg 에 저장 --%>
-<% String joinMsg = (String)request.getAttribute("joinMsg"); %> 
+<% 
+	String joinMsg = (String)request.getAttribute("joinMsg"); 
+%> 
 
 <%-- joinMsg 가 null 이 아니면 아래 script 를 출력하는 if 문 시작 --%> 
 <% 
