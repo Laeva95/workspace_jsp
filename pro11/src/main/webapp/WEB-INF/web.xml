@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>pro11</display-name>
+  
+  <!-- 클라이언트가 주소창에 웹 어플리케이션의 첫 화면을 요청했을 때 표시할 파일 주소 경로를 설정 -->
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.xhtml</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.xhtml</welcome-file>
+	<welcome-file>/test02/main.jsp</welcome-file>
+	<welcome-file>/hello.jsp</welcome-file>
+	<welcome-file>/scoreText.html</welcome-file>
   </welcome-file-list>
+  <!-- 각각 발생한 예외 코드 종류에 따라 예외 처리 할 jsp 파일의 경로를 설정 -->
+  <error-page>
+  	<error-code>
+  		404					<!-- 예외 코드 종류 -->
+  	</error-code>
+  	<location>
+  		/err/error_404.jsp	<!-- 처리 할 페이지 경로 -->
+  	</location>
+  </error-page>
+    <error-page>
+  	<error-code>
+  		500					<!-- 예외 코드 종류 -->
+  	</error-code>
+  	<location>
+  		/err/error_500.jsp	<!-- 처리 할 페이지 경로 -->
+  	</location>
+  </error-page>
+  
 </web-app>
