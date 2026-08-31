@@ -75,8 +75,8 @@
 
 				<div id="buttons">
 					<input type="submit" value="Submit" class="submit">
-					<%-- type="button" 은 눌러도 전송이 안 되므로 "submit" 으로 변경했다 --%> <input
-						type="button" value="Cancel" class="cancel">
+					<%-- type="button" 은 눌러도 전송이 안 되므로 "submit" 으로 변경했다 --%> 
+					<input type="button" value="Cancel" class="cancel">
 				</div>
 			</form>
 		</article>
