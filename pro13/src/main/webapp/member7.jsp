@@ -18,7 +18,7 @@
  if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 	 if(!request.getParameter("id").equals("checkMemberList")){
 %>
-<jsp:useBean id="vo" class="sec01.ex01.MemberBean" scope="page"/>
+<jsp:useBean id="" class="w" scope="page"/>
 <jsp:setProperty name="vo" property="*" />
 <% 
 	 } 

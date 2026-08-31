@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 
 <%-- MemberBean vo 객체 생성 --%>
-<jsp:useBean id="vo" class="sec01.ex01.MemberBean" scope="page"></jsp:useBean>
+<jsp:useBean id="" class="w" scope="page"></jsp:useBean>
 
 <%-- vo 객체의 name 속성 "이순신" 으로 변경 --%>
 <jsp:setProperty property="name" name="vo" value="이순신"/>
@@ -21,5 +21,8 @@ empty 연산자를 이용해서 EL 태그 영역에 출력 <br>
 	 ${ empty list } <br>
 	 ${ not empty list } <br>
 	 
+	 ${ empty "hello" } <br>
+	 ${ empty null } <br>
+	 ${ empty "" } <br>
 	 
 </h2>

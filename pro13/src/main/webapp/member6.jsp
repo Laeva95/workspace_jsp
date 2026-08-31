@@ -23,9 +23,11 @@
  if(request.getParameter("id") != null && !request.getParameter("id").equals("")){
 	 if(!request.getParameter("id").equals("checkMemberList")){
 %>
-<jsp:useBean id="vo" class="sec01.ex01.MemberBean" scope="page"/>
+<jsp:useBean id="" class="w" scope="page"/>
 <jsp:setProperty name="vo" property="*" />
-<% 
+<%
+p
+ 
 		memberDAO.addMember(vo);
 	 } 
 	 // 전달받은 id가 null이거나 비어있는지 확인
@@ -34,7 +36,7 @@
  }
  // 전체 회원 목록 리스트 가져오기
  List membersList = memberDAO.listMembers();
- %>
+%>
  
  <%-- <jsp:useBean id="생성한 객체 식별값" class="클래스 파일 저장 경로" scope="page, request, session, application 바인딩 범위 설정" /> --%>
 <html>
@@ -42,22 +44,18 @@
 <meta charset="UTF-8">
 <title>회원 목록창</title>
 <script type="text/javascript">
-<%
+<%p
+
 // memberForm.html 페이지에서 전달받은 정보를 통해 데이터베이스에 회원 추가
 // 중복된 id가 있는지 확인하고 성공 여부를 반환
-if(isDuplicate){
-%>
+if(isDuplicate){%>
 	window.alert("잘못된 입력입니다!");
 	location.href = "memberForm.html";
-<%
-// 전달받은 id가 null이거나 비어있다면 memberForm.html 페이지 요청
-} if(isNull){
-%>
+<%// 전달받은 id가 null이거나 비어있다면 memberForm.html 페이지 요청
+} if(isNull){%>
 	window.alert("아이디를 입력해주세요!");
 	location.href = "memberForm.html";
-<%
-} 
-%>
+<%}%>
 </script>
 </head>
 <body>
@@ -70,6 +68,8 @@ if(isDuplicate){
 			<td width="5%">가입일</td>
 		</tr>
 		<%
+		p
+
 			// 만약 테이블에 조회한 회원이 없다면
 			if(membersList.size() == 0){
 		%>
@@ -80,11 +80,13 @@ if(isDuplicate){
 			</td>
 		</tr>
 		<%
+		p
+
 			// 등록된 회원이 있다면
 			}else{
 				for(int i = 0; i < membersList.size(); i++){
 					// 회원 정보 하나씩 꺼내서 테이블 행 하나에 출력
-					MemberBean bean = (MemberBean)membersList.get(i);
+					MemberVO bean = (MemberVO)membersList.get(i);
 		%>
 		<tr align="center">
 			<td><%= bean.getId() %></td>

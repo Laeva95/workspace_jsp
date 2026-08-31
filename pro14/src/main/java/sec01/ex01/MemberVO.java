@@ -3,7 +3,7 @@ package sec01.ex01;
 import java.sql.Date;
 
 // 데이터를 저장하기 위한 VO 클래스
-public class MemberBean {
+public class MemberVO {
 	private String id;
 	private String pwd;
 	private String name;
@@ -11,9 +11,9 @@ public class MemberBean {
 	private Date joinDate;
 	
 	// 생성자
-	public MemberBean() {}
+	public MemberVO() {}
 
-	public MemberBean(String id, String pwd, String name, String email) {
+	public MemberVO(String id, String pwd, String name, String email) {
 		super();
 		this.id = id;
 		this.pwd = pwd;

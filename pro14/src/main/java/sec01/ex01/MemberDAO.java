@@ -34,7 +34,7 @@ public class MemberDAO {
 			ResultSet rs = pstmt.executeQuery()){
 			
 			while(rs.next()) {
-				MemberBean vo = new MemberBean(rs.getString("id"), 
+				MemberVO vo = new MemberVO(rs.getString("id"), 
 											   rs.getString("pwd"),
 											   rs.getString("name"), 
 											   rs.getString("email"));
@@ -47,7 +47,7 @@ public class MemberDAO {
 		}
 		return list;
 	}
-	public boolean addMember(MemberBean memberBean) {
+	public boolean addMember(MemberVO memberBean) {
 		boolean result = true;
 		
 		// 중복된 id가 존재한다면 아이디를 추가하지 않고 반환
