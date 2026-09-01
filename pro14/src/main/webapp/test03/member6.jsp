@@ -11,9 +11,11 @@
     	dataList.add("hello");
     	dataList.add("world");
     	dataList.add("안녕하세요");	
+    	
+    	pageContext.setAttribute("list", dataList);
     %>
 
-	<c:set var="list" value="<%= dataList %>"/>   
+	<%-- <c:set var="list" value="<%= dataList %>"/>    --%>
 	<c:forEach var="i" begin="1" end="10" step="1" varStatus="loop">
 		현재 ${ loop.count } 반복한 상태의 i 변수에 저장된 값은 ${ i }입니다.<br>
 	</c:forEach>
