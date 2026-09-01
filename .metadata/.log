@@ -9826,3 +9826,6 @@ Caused by: org.eclipse.jst.jsp.core.internal.java.jspel.TokenMgrError: Lexical e
 	at org.eclipse.swt.widgets.RunnableLock.run(RunnableLock.java:40)
 	at org.eclipse.swt.widgets.Synchronizer.runAsyncMessages(Synchronizer.java:131)
 	... 21 more
+
+!ENTRY org.eclipse.lsp4e 2 0 2026-09-01 11:35:28.987
+!MESSAGE Could not get if the workspace folder capability is supported due to timeout after 1 second

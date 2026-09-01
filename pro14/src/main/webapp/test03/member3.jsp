@@ -14,6 +14,7 @@
     	c:remove -> c:set 태그로 설정한 변수를 내장 객체 영역에서 제거 할 때 사용
      --%>
     <c:remove var="age"/>
+    <c:remove var="height"/>
 <table width="100%" align="center">
 	<tr align="center" bgcolor="pink">
 		<td width="7%">아이디</td>
