@@ -47,7 +47,25 @@
 			</li>
 			<li>
 				<b>입력받은 전체 문자열을 소문자로 변경</b>
-				${ fn:lowercase(text) }
+				${ fn:toLowerCase(text) }
+			</li>
+			<li>
+				<b>공백 문자를 밑줄 문자로 변경 후 출력</b>
+				${ fn:replace(text, " ", "_") }
+			</li>
+			<li>
+				<b>특정 키워드 포함 여부</b><br>
+				<c:forEach var="keyword" items="${ fn:split(keywords, ',') }">
+					"${ keyword }" : ${ fn:contains(text, keyword) ? "포함됨" : "없음"}<br>
+				</c:forEach>
+			</li>
+			<li>
+				<b>문자열 뒤집기</b>
+				<c:set var="reversedText" value="" />
+				<c:forEach var="i" begin="0" end="${ fn:length(text) - 1 }" step="1">
+					<c:set var="reversedText" value="${ fn:substring(text, i, i + 1)}${ reversedText }"/>
+				</c:forEach>
+				${ text } -> ${ reversedText }
 			</li>
 		</ul>
 		
