@@ -17,7 +17,7 @@
 <jsp:useBean id="memDAO" class="sec02.ex01.MemberDAO"/>
 <c:set var="insertResult" value="${ memDAO.addMember(member) }"/>
 
-<c:set var="membersList" value="${ memDAO.listMembers() }" scope="request" />
+<c:set var="list" value="${ memDAO.listMembers() }" scope="request" />
 
 <title>Insert title here</title>
 </head>

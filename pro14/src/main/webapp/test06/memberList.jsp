@@ -12,27 +12,27 @@
 <body>
 	<table align="center" border="1">
 		<tr	align="center" bgcolor="lightgreen">
-			<td width="7%"><b>아이디</b></td>
+			<td width="7%"><b>아 이 디</b></td>
 			<td width="7%"><b>비밀번호</b></td>
-			<td width="7%"><b>이름</b></td>
-			<td width="7%"><b>이메일</b></td>
-			<td width="7%"><b>가입일</b></td>
+			<td width="7%"><b>이    름</b></td>
+			<td width="7%"><b>이 메 일</b></td>
+			<td width="7%"><b>가 입 일</b></td>
 		</tr>
 		<c:choose>
 			<%-- 조건 1. list 가 비어있을 경우 --%>
-			<c:when test="${ list eq null }">
+			<c:when test="${ empty list }">
 				<tr>
-					<td colspan="5">
+					<td colspan="5" align="center">
 						<b>등록된 회원이 없습니다.</b>
 					</td>
 				</tr>
 			</c:when>
 			<%-- 조건 2. list 가 비어있지 않을 경우 --%>
-			<c:when test="${ list ne null }">
+			<c:when test="${ not empty list }">
 				<%-- membersList 의 모든 요소를 순회 --%>
 				<c:forEach var="mem" items="${ list }">
 					<%-- list 의 각 요소가 가진 정보 출력 --%>
-					<tr align="center">
+					<tr align="center" bgcolor="#99ccff">
 						<td>${ mem.id }</td>
 						<td>${ mem.pwd }</td>
 						<td>${ mem.name }</td>
