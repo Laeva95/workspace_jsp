@@ -4,12 +4,12 @@
     pageEncoding="UTF-8"
     isELIgnored="false"%>
 <%
-	request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 %>
 <%-- 
 	id: 객체 변수명 class: 생성할 객체의 클래스 경로 scope: 접근 범위 
 --%>
-<jsp:useBean id="vo1" class="sec01.ex01.MemberVO" scope="page"/>
+<jsp:useBean id="vo1" class="sec02.ex01.MemberVO" scope="page"/>
 
 <%--
 	name: 값을 설정할 객체 이름 property: 값을 설정할 객체 변수 이름(*: 모든 변수)

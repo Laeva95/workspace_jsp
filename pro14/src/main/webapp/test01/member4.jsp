@@ -2,13 +2,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 %>
 <%-- 
 	1. 자바 빈 생성
 	id: 객체 변수명 class: 생성할 객체의 클래스 경로 scope: 접근 범위 
 --%>
-<jsp:useBean id="vo" class="sec01.ex01.MemberVO" scope="page"/>
+<jsp:useBean id="vo" class="sec02.ex01.MemberVO" scope="page"/>
 
 <%--
 	2. 자바 빈 변수 설정
