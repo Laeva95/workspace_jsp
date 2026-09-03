@@ -52,7 +52,7 @@ public class FileDownload extends HttpServlet {
 		
 		// 파일 다운로드시 다른 이름으로 저장 대화상자가 팝업되도록 헤더 속성 설정
 		// 또한 파일명이 한글일 경우 깨지는 것을 방지하기 위해 utf-8 인코딩 설정
-		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(fileName, "utf-8") + "\";");
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(fileName, "utf-8") + "\"");
 		
 		// Content-Disposition
 		//			- attachment: 모든 파일에 대해 파일 대화상자 팝업

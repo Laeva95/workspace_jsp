@@ -23,7 +23,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
  	ServletFleUpload 클래스를 이용해서 파일 업로드 요청 화면에서 업로드 요청한 파일과 요청한 파라미터 정보를 가져와서
  	파일 업로드 기능을 실제로 처리하고 요청한 파라미터를 얻어서 브라우저에 출력
  */
-@WebServlet("/upload.do")
+//@WebServlet("/upload.do")
 public class FileUpload extends HttpServlet {
 
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
