@@ -19,7 +19,18 @@
 </style>
 </head>
 <body>
-
+	<div class="box">
+		<c:choose>
+			<c:when test="${ successCount gt 0 }">
+				<p class="ok">파일 ${ successCount }건 업로드에 성공했습니다.</p>
+			</c:when>
+			<c:otherwise>
+				<p class="fail">업로드된 파일이 없습니다. 파일을 첨부했는지 확인해주세요.</p>
+			</c:otherwise>
+		</c:choose>
+		<a href="list.do" class="btn">파일 목록 보기</a>
+		<a href="upload.do" class="btn">업로드 요청</a>
+	</div>
 
 </body>
 </html>
