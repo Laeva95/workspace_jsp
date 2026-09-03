@@ -50,8 +50,6 @@ public class FileUploadServlet extends HttpServlet {
 		// 파일을 업로드 할 실제 절대 경로
 		String savePath = request.getServletContext().getRealPath("/" + UPLOAD_DIR);
 		
-		System.out.println(savePath);
-		
 		// upload 폴더가 없다면 새로 만들기
 		File saveDir = new File(savePath);
 		

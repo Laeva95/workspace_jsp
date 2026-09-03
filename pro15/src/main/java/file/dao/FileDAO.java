@@ -83,5 +83,50 @@ public class FileDAO {
 		}
 		return list;
 	}
+	// 매개변수를 통해 데이터 베이스에서 원본 파일명을 찾아서 반환하는 메소드
+	public String selectOriginName(String fileRealName) {
+		// 원본 파일명을 조회할 쿼리 작성
+		String query = "select filename from file where filerealname = ?";
+		
+		// 커넥션 객체 및 쿼리를 실행할 객체 생성
+		try(Connection con = getConnection();
+			PreparedStatement pstmt = con.prepareStatement(query)){
+			
+			// 쿼리의 ? 자리에 fileRealName 전달
+			pstmt.setString(1, fileRealName);
+			
+			// 쿼리를 실행하고 결과를 rs 변수에 저장
+			try(ResultSet rs = pstmt.executeQuery()){
+				if(rs.next()) {
+					// 결과 열 값 반환
+				return rs.getString("filename");
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		// null 반환
+		return null;
+	}
 	
+	// 파일을 다운로드 할 때 다운로드 횟수를 1 증가시키는 메소드
+	// 성공하면 1, 실패하면 -1을 반환
+	public int hit(String fileRealName) {
+		// 다운로드 횟수를 1 증가시키는 update 쿼리 생성
+		String query = "update file set downloadcount = downloadcount + 1 "
+					+ "where filerealname = ?";
+		
+		try (Connection con = getConnection();
+			 PreparedStatement pstmt = con.prepareStatement(query)) {
+			
+			pstmt.setString(1, fileRealName);
+			
+			// 쿼리 실행에 성공한 행 개수 반환
+			return pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return -1;
+	}
 }

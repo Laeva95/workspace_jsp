@@ -20,7 +20,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 /*
 	업로드된 파일을 브라우저로 다운로드 할 수 있는 기능을 제공하는 서블릿
  */
-@WebServlet("/download.do")
+//@WebServlet("/download.do")
 public class FileDownload extends HttpServlet {
 
 	protected void doHandle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

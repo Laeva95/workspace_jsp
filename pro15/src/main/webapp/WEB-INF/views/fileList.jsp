@@ -49,10 +49,11 @@
 	<c:otherwise>
 		<c:forEach var="vo" items="${ list }">
 			<tr align="center">
-				<td>${ vo.fileName }</td>
-				<td>${ vo.fileRealName }</td>
+				<%-- fn:escapeXml(): 파일 이름에 html, 자바 스크립트 코드가 섞여있을 경우 코드가 실행되는 것을 방지하는 기능 --%>
+				<td>${ fn:escapeXml(vo.fileName) }</td>
+				<td>${ fn:escapeXml(vo.fileRealName) }</td>
 				<td>${ vo.downloadCount }</td>
-				<td></td>
+				<td><a href="download.do?fileRealName=${ fn:escapeXml(vo.fileRealName) }">다운로드</a></td>
 			</tr>
 		</c:forEach>
 	</c:otherwise>
