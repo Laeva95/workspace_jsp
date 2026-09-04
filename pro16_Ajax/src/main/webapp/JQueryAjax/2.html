@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery $.ajax 로 text 응답받는 2.html 화면</title>
+
+	<!--
+		jQuery 문법을 사용하기 위해 jQuery 파일을 먼저 불러옵니다.
+
+		이 한 줄이 없으면 $ 를 사용하는 모든 코드에서
+		"$ is not defined" 오류가 발생합니다.
+
+		주의. 이 주소는 인터넷에 있는 파일이므로
+		      인터넷이 끊긴 환경에서는 동작하지 않습니다.
+		      실무에서는 파일을 다운로드해서 프로젝트 안에 넣어 두기도 합니다.
+	-->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+	<style type="text/css">
+		body   { font-family:'Malgun Gothic'; padding:24px; background:#f7f9fc; }
+		h2     { color:#1d5fa8; }
+		.box   { background:#fff; border:1px solid #cbd5e2; border-radius:8px; padding:20px; max-width:620px; }
+		input  { padding:6px; border:1px solid #93a5bd; border-radius:4px; width:120px; }
+		button { background:#1d5fa8; color:#fff; border:none; padding:8px 18px;
+		         border-radius:6px; cursor:pointer; margin-top:8px; }
+		#result{ margin-top:14px; padding:12px; background:#e8f0fb; border-radius:6px;
+		         color:#1d5fa8; font-weight:bold; min-height:22px; }
+		.note  { color:#6b7c93; font-size:13px; margin-top:12px; }
+	</style>
+<body>
+	<h2>2. JQuery $.ajax() 함수 - json 형식으로 응답받기</h2>
+	
+	<div class="box">
+		값1 입력: <input type="text" name="v1" id="v1" value="10"><br><br>
+		값2 입력: <input type="text" name="v2" id="v2" value="20"><br>
+		
+		<button id="cal">계산 요청</button>
+		
+		<!-- 계산 결과가 표시될 영역 -->
+		<div id="result">
+			
+		</div>
+		<p class="note">값 하나만 전달받는 것이 아니라 객체를 전달받음</p>
+						
+	</div>
+	<script type="text/javascript">
+		// 1. 계산 요청 버튼에 클릭 이벤트 추가
+		$("#cal").on("click", function(){
+			// $.ajax(): 톰캣 서버 페이지에 비동기 통신 요청
+			// GET, POST 같은 HTTP 프로토콜 방식으로 서버 페이지에 비동기 통신을 요청
+			$.ajax({
+				url: "calc2.jsp",
+				type: "get",
+				data: { v1: $("#v1").val(), v2: $("#v2").val() },
+				dataType: "json",
+				success: function(response){
+					console.log(response);	
+				}
+				
+			});
+		});
+	</script>
+	
+</body>
+</html>
+
+
+
+
+
+
+
+
