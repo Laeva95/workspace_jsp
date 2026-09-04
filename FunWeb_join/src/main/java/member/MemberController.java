@@ -2,6 +2,7 @@ package member;
 
 // 입출력 예외 처리를 위한 IOException import
 import java.io.IOException;
+import java.io.PrintWriter;
 
 // 서블릿 작성에 필요한 javax.servlet 도구들 import
 import javax.servlet.ServletException;
@@ -76,7 +77,26 @@ public class MemberController extends HttpServlet {
 		// [실습 4-1] 주소가 /join.do 로 끝나면 join() 호출하는 else if 추가
 		} else if (action.endsWith("/join.do")) {	
 			join(request, response);
-		// 등록되지 않은 주소는 메인 화면으로 redirect
+		// 주소가 /idCheck.do 로 끝나면 아이디 중복 검사 요청 메소드 호출
+		} else if (action.endsWith("/idCheck.do")){
+			response.setContentType("text/html; charset=utf-8");
+			
+			// 클라이언트의 웹 브라우저와 연결된 출력 스트림 생성
+			PrintWriter out = response.getWriter();
+			
+			// 입력한 아이디 값 가져오기
+			String id = request.getParameter("userid");
+			
+			// MemberService 객체에게 아이디 중복 검사 요청
+			int checkResult = memberService.idCheck(id);
+			
+			if(checkResult == 1) {
+				out.print("아이디 중복");
+			}else {
+				out.print("사용 가능한 아이디");
+			}
+			
+		// 등록되지 않은 주소는 메인 화면으로 redirect	
 		} else {
 			response.sendRedirect(request.getContextPath() + "/index.jsp");
 		}

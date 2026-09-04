@@ -54,9 +54,8 @@
 				data: { v1: $("#v1").val(), v2: $("#v2").val() },
 				dataType: "json",
 				success: function(response){
-					console.log(response);	
+					$("#result").html("result: " + response.result + "<br>v1: " + response.v1 + "<br>v2: " + response.v2);					
 				}
-				
 			});
 		});
 	</script>

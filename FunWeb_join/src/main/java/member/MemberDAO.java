@@ -169,4 +169,25 @@ public class MemberDAO {
 		// 저장 결과 반환
 		return result;
 	}
+	
+	public int idCheck(String id) {
+		int check = 0;
+		String sql = "select * from t_member where id = '" + id + "'";
+		
+		try(Connection con = dataFactory.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery()) { 
+			// id가 동일한 행이 데이터베이스에서 조회 된다면 check = 1
+			if(rs.next()) {
+				check = 1;
+			}else {
+				check = 0;
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return check;
+	}
 }//MemberDAO

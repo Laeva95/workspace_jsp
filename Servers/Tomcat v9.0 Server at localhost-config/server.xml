@@ -168,7 +168,7 @@
       
       
       
-      <Context docBase="pro15" path="/pro15" reloadable="true" source="org.eclipse.jst.jee.server:pro15"/><Context docBase="pro16_JSON" path="/pro16_JSON" reloadable="true" source="org.eclipse.jst.jee.server:pro16_JSON"/><Context docBase="pro16_Ajax" path="/pro16_Ajax" reloadable="true" source="org.eclipse.jst.jee.server:pro16_Ajax"/></Host>	
+      <Context docBase="pro15" path="/pro15" reloadable="true" source="org.eclipse.jst.jee.server:pro15"/><Context docBase="pro16_JSON" path="/pro16_JSON" reloadable="true" source="org.eclipse.jst.jee.server:pro16_JSON"/><Context docBase="pro16_Ajax" path="/pro16_Ajax" reloadable="true" source="org.eclipse.jst.jee.server:pro16_Ajax"/><Context docBase="FunWeb_join" path="/FunWeb_join" reloadable="true" source="org.eclipse.jst.jee.server:FunWeb_join"/></Host>	
     </Engine>
   </Service>
 </Server>

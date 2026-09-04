@@ -79,5 +79,9 @@ public class MemberService {
 		// 저장 결과를 Controller 에게 반환
 		return result;
 	}
+	public int idCheck(String id) {
+		
+		return memberDAO.idCheck(id);
+	}
 
 }//MemberService

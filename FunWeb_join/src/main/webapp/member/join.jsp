@@ -70,28 +70,26 @@
 
 				<fieldset>
 					<legend>Basic Info</legend>
-					<label>User ID</label> <input type="text" name="id" class="id">
-					<input type="button" value="dup. check" class="dup"><br>
-					<label>Password</label> <input type="password" name="pass"><br>
-					<label>Retype Password</label> <input type="password" name="pass2"><br>
-					<label>Name</label> <input type="text" name="name"><br>
-					<label>E-Mail</label> <input type="email" name="email"><br>
-					<label>Retype E-Mail</label> <input type="email" name="email2"><br>
+					<label>아이디</label> <input type="text" name="id" class="id" onkeyup="mySend();">
+					<span id="result"></span><br>
+					<label>비밀번호</label> <input type="password" name="pass"><br>
+					<label>비밀번호 확인</label> <input type="password" name="pass2"><br>
+					<label>이름</label> <input type="text" name="name"><br>
+					<label>이메일</label> <input type="email" name="email"><br>
+					<label>이메일 확인</label> <input type="email" name="email2"><br>
 				</fieldset>
-
 				<fieldset>
-					<legend>Optional</legend>
-					<label>Address</label> <input type="text" name="address"><br>
-					<label>Phone Number</label> <input type="text" name="phone"><br>
-					<label>Mobile Phone Number</label> <input type="text" name="mobile"><br>
+					<legend>상세정보 입력</legend>
+					<label>주소</label> <input type="text" name="address"><br>
+					<label>전화번호</label> <input type="text" name="phone"><br>
+					<label>HP</label> <input type="text" name="mobile"><br>
 				</fieldset>
 				<div class="clear"></div>
 				<div id="buttons">
 
 					<!-- [실습 5-2] type 을 "button" 에서 "submit" 으로 변경 (눌러야 전송됨) -->
-					<input type="submit" value="Submit" class="submit">
-
-					<input type="reset" value="Cancel" class="cancel">
+					<input type="submit" value="회원가입" class="submit">
+					<input type="reset" value="가입취소" class="cancel">
 				</div>
 			</form>
 		</article>
@@ -103,5 +101,32 @@
 		<%@ include file="../inc/bottom.jsp" %>
 		<!-- 푸터들어가는 곳 -->
 	</div>
+	<%-- JQuery 문법을 사용하기 위한 CND 요청 --%>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script type="text/javascript">
+	// 아이디 입력 input에 아이디를 입력하면 중복 체크 요청을 Ajax 비동기 통신으로 요청
+		function mySend(){
+			let id = $("input[name='id']").val();	// 입력한 아이디 가져오기
+			
+			// 아이디를 입력하지 않았다면
+			if(id == ""){
+				$("#result").text("아이디 입력 필수");
+				$("input[name='id']").focus();
+				return;
+			}
+			$.ajax({
+				url: "<%= request.getContextPath() %>/idCheck.do",
+				type: "POST",
+				data: {userid: id},
+				dataType: "text",
+				success: function(response){
+					$("#result").text(response);
+				},
+				error: function(){
+					alert("요청 통신 에러 발생!");
+				}
+			});
+		}
+	</script>
 </body>
 </html>
