@@ -1,0 +1,13 @@
+{
+	"student" : {
+		"name" : "kim jiho",
+		"age" : 21,
+		"major" : "Computer Science",
+		"courses" : [ 
+			{"name" : "Data Structures", "grade" : "A"}, 
+			{"name" : "Algorithms", "grade" : "B"}, 
+			{"name" : "Operation Systems", "grade" : "C"} 
+		],
+		"isGraduated" : false
+	}
+}
