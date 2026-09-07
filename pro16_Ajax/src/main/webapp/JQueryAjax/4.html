@@ -1,0 +1,139 @@
+<!--
+================================================================================
+ 파일명   : JQueryAjax/4.html
+ 주제     : jQuery $.ajax 로 아이디 중복체크 하기 (실전 예제)
+ 대상     : 비전공자
+================================================================================
+
+ 이 파일에서 배우는 것
+ --------------------------------------------------------------------------
+ 1. 버튼을 누르지 않아도 입력 도중에 자동으로 검사하는 방법
+ 2. input 이벤트의 사용법
+ 3. 디바운스로 요청 횟수를 줄이는 방법
+ 4. 메소드 체인 문법  $("#msg").text("...").css("color", "red")
+
+ 참고. 이 화면의 동작 순서
+
+   [브라우저] 아이디 칸에 글자 입력
+       |
+       | input 이벤트 발생 (한 글자마다 발생)
+       | 이전 예약을 취소하고 400 밀리초 뒤에 실행하도록 다시 예약
+       |
+       | (계속 타이핑하면 계속 취소되고 다시 예약됨)
+       V
+   [브라우저] 400 밀리초 동안 조용함 -> checkId() 실행
+       |
+       | idCheck.jsp?id=admin
+       V
+   [톰캣서버] idCheck.jsp
+       |
+       | 1초 대기 후 {"id":"admin","exist":true} 응답
+       V
+   [브라우저] <span id="msg"> 영역에만 결과 표시
+
+   중요. 서버가 1초 동안 검사하는 동안에도
+        비밀번호 칸과 이메일 칸에 계속 입력할 수 있습니다.
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>jQuery $.ajax 로 아이디 중복체크 하는 4.html 화면</title>
+
+	<!-- jQuery 문법 사용을 위한 파일 불러오기 -->
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+	<style type="text/css">
+		body   { font-family:'Malgun Gothic'; padding:24px; background:#f7f9fc; }
+		h2     { color:#1d5fa8; }
+		.box   { background:#fff; border:1px solid #cbd5e2; border-radius:8px; padding:20px; max-width:620px; }
+		.row   { margin-bottom:12px; }
+		label  { display:inline-block; width:80px; font-weight:bold; }
+		input  { padding:6px; border:1px solid #93a5bd; border-radius:4px; width:180px; }
+		#msg   { margin-left:10px; font-weight:bold; }
+		.note  { color:#6b7c93; font-size:13px; margin-top:12px; }
+	</style>
+</head>
+<body>
+
+<h2>4. jQuery $.ajax — 아이디 중복체크 (실전 예제)</h2>
+
+<div class="box">
+	<div class="row">
+		<label>아이디</label>
+		<input type="text" id="id" placeholder="admin, test, hong 은 중복">
+
+		<!-- 검사 결과 문구가 표시될 자리 -->
+		<span id="msg"></span>
+	</div>
+
+	<div class="row">
+		<label>비밀번호</label>
+		<input type="password" id="pwd">
+	</div>
+
+	<div class="row">
+		<label>이메일</label>
+		<input type="text" id="email">
+	</div>
+
+	<p class="note">아이디를 입력하는 도중에 자동으로 서버에 검사를 요청합니다.
+	   버튼을 누르지 않아도 실행되며, 검사하는 1초 동안에도 비밀번호와 이메일을 계속 입력할 수 있습니다.</p>
+</div>
+
+<script type="text/javascript">
+// 1. 디바운스용 예약 번호를 저장할 변수 선언
+let timerId;
+
+// 아이디 입력칸 input에 input 이벤트 등록
+// input 값이 바뀌는 모든 경우에 발생
+$("#id").on("input", function(){
+	// 이전에 예약한 요청을 취소
+	// 아직 실행되지 않은 예약만 취소하므로 안전함
+	clearTimeout(timerId);
+	
+	// 400 밀리초 뒤에 checkId 함수를 실행
+	// 글자를 계속 치는 동안에는 취소되므로 작동하지 않음
+	timerId = setTimeout(checkId, 400);
+});
+
+function checkId(){
+	// 입력한 아이디를 얻어 앞뒤 공백 제거
+	const id = $("#id").val().trim();
+	
+	// 아이디를 입력하지 않아 빈 값이라면 함수 즉시 종료
+	if(id === ''){
+		$("#msg").text("");
+		return;
+	}
+	
+	// 검사 중임을 화면에 표시
+	$("#msg").text("확인 중...").css("color", "red");
+	
+	$.ajax({
+		url: 'idCheck.jsp',
+		type: 'get',
+		data: { id : id },
+		dataType: "json",
+		// 통신 성공시 호출되는 콜백 함수
+		success: function(response){
+			// 이미 존재하는 아이디인지 확인
+			if(response.exist){
+				$("#msg").text("이미 존재하는 아이디입니다.").css("color", "red");
+			}else{
+				$("#msg").text("사용 가능한 아이디입니다.").css("color", "green");				
+			}
+		},
+		// 에러 발생시 호출되는 콜백 함수
+		error: function(xhttp, status, error){
+			$("#msg").text("확인 중 오류가 발생했습니다.").css("color", "red");
+		}
+	});
+	
+}
+
+</script>
+
+</body>
+</html>

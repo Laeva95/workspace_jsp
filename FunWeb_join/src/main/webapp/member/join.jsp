@@ -120,7 +120,7 @@
 				data: {userid: id},
 				dataType: "text",
 				success: function(response){
-					$("#result").text(response);
+					$("#result").html(response);
 				},
 				error: function(){
 					alert("요청 통신 에러 발생!");

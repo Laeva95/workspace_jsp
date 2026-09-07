@@ -54,10 +54,10 @@
     <fullyQualifiedTypeName name="javax.servlet.annotation.WebServlet"/>
     <fullyQualifiedTypeName name="file.dao.FileDAO"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.sql.Connection"/>
-    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
     <fullyQualifiedTypeName name="java.net.URLEncoder"/>
     <fullyQualifiedTypeName name="java.io.FileInputStream"/>
     <fullyQualifiedTypeName name="java.io.OutputStream"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+    <fullyQualifiedTypeName name="java.sql.ResultSet"/>
 </qualifiedTypeNameHistroy>

@@ -1,0 +1,31 @@
+<%@ page language="java" contentType="application/json; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%--
+================================================================================
+ 파일명 : FetchAjax/calc2.jsp
+ 역할   : 값 2개를 받아 계산한 뒤 "JSON 형태" 로 응답하는 서버 페이지
+================================================================================
+
+ 참고. contentType 을 application/json 으로 지정한 이유
+
+   text/html 로 지정하면 브라우저는 HTML 문서로 인식합니다.
+   JSON 데이터임을 정확히 알려 줘야
+   fetch 의 res.json() 과 jQuery 의 dataType:"json" 이 안정적으로 동작합니다.
+
+ 참고. calc.jsp 와 calc2.jsp 의 차이
+
+   calc.jsp   응답 :  30
+                      -> 값이 하나뿐이라 "무엇의 결과인지" 알 수 없습니다.
+
+   calc2.jsp  응답 :  { "v1":10, "v2":20, "result":30 }
+                      -> 이름표가 붙어 있어 여러 값을 한 번에 보낼 수 있습니다.
+                      -> 실무에서는 거의 항상 이 JSON 방식을 사용합니다.
+--%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	int v1 = Integer.parseInt(request.getParameter("v1"));
+	int v2 = Integer.parseInt(request.getParameter("v2"));
+	
+%>
+{"v1":<%= v1 %>, "v2":<%= v2 %>, "result":<%= v1 + v2 %>}

@@ -91,7 +91,7 @@ public class MemberController extends HttpServlet {
 			int checkResult = memberService.idCheck(id);
 			
 			if(checkResult == 1) {
-				out.print("아이디 중복");
+				out.print("<span style='color: red;'>아이디 중복</span>");
 			}else {
 				out.print("사용 가능한 아이디");
 			}
