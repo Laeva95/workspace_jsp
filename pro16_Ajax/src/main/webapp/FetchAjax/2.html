@@ -98,8 +98,87 @@
 		3. 디바운스        : 글자를 칠 때마다 요청이 나가지 않도록
 		                    마지막 입력 후 잠시 조용할 때만 요청을 보냅니다.
 */
-
-
+	// 공통 요청 함수
+	async function callApi(url, options = {}){
+			// AbortController(): fetch는 몇초간 응답이 없으면 통신을 취소하는 옵션이 없음
+			// 						AbortController는 진행중인 요청을 강제로 취소 할 수 있음
+			const controller = new AbortController();
+			
+			// 8초가 지나면 요청을 강제로 취소
+			const timer = setTimeout(() => controller.abort(), 8000);
+			
+			try {
+				// 요청 보내기
+				const res = await fetch(url, {
+					// signal: 위에서 만든 제어 장치에 이 요청 정보를 연결함
+					// 이를 통해 controller.abort() 가 호출 가능함
+					signal: controller.signal,
+					
+					// ... 연산자는 호출한 쪽에서 넘긴 옵션들을 이 자리에 펼쳐 넣음
+					...options
+				});
+				
+				// 상태 검사
+				if(!res.ok){
+					throw new Error(`요청 실패 ($(res.status))`);
+				}
+				if(res.status == 204){
+					return {};
+				}
+				
+				// json 파일 반환
+				return await res.json();
+				
+			} finally{
+				
+				
+			}
+	}
+	// 아이디 중복 체크 함수
+	async function checkId(){
+		
+	}
+	// 예약 번호를 저장할 변수
+	let timerId;
+	
+	// 아이디 입력에 input 이벤트 등록
+	document.getElementById("id").addEventListener("input", () => {
+		// 이전에 예약해둔 요청 취소
+		clearTimeout(timerId);
+		
+		timerId = setTimeout(checkId, 400);
+	});
+	
+	async function checkId(){
+		// 입력한 아이디 저장
+		const id = document.getElementById("id").value.trim();
+		
+		// 결과 문구를 표시할 태그 선택
+		const msg = document.getElementById("msg");
+		
+		// 아이디 입력없이 검사 요청시 함수 종료
+		if(id === ""){
+			msg.textContent = "";
+			return;
+		}
+		
+		// 아이디 중복 검사 중임을 화면에 표시
+		msg.textContent = "확인 중...";
+		msg.style.color = "#6b7c93";
+		
+		try {
+			// data: {"id":"<%= id %>","exist":<%= exist %>}
+			const data = await callApi(`idCheck.jsp?id=${encodeURIComponent(id)}`);
+			
+			msg.textContent = data.exist ? "이미 사용중인 아이디입니다." : "사용 가능한 아이디입니다.";
+			msg.style.color = data.exist ? "red" : "green";
+		} catch (e) {
+			msg.textContent = "확인 중 오류가 발생했습니다.";
+			msg.style.color = "red";
+		}
+		
+		
+	}
 </script>
 
 </body>
