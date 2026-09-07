@@ -73,7 +73,38 @@
 </div>
 
 <script type="text/javascript">
-
+	async function loadDictionary(){
+		const area = document.getElementById("dictionary");
+		
+		try {
+			const res = await fetch("ex1.json");
+			
+			if(!res.ok){
+				throw new Error(`요청 실패: (${res.status})`);
+			}
+			
+			const data = await res.json(); 
+			
+			// map(): 배열의 각 요소에 대해 코드를 실행한 뒤 새로운 배열 반환
+			const html = data.map(item => {
+				const quoteHtml = item.quote ? item.quote.map(line => `<div class="quote">${line}</div>`).join("")
+																		+`<div class="author">- ${item.author}</div>` : "";
+																		
+				return `<div class="entry">
+							<h3 class="term">${item.term}</h3>
+							<div class="part">${item.part}</div>
+							<div class="definition">${item.definition}</div>
+							${quoteHtml}
+						</div>`
+			}).join("");	// join(): map 함수가 만든 배열을 하나의 긴 문자열로 합쳐서 반환
+			
+			area.innerHTML = html;
+			
+		} catch (e) {
+			area.textContent = "목록을 불러오지 못했습니다.";
+			console.log(e);
+		}
+	}
 
 </script>
 

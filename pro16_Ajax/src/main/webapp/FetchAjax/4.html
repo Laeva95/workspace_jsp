@@ -75,9 +75,81 @@
 </div>
 
 <script type="text/javascript">
+// 브라우저 화면에 로그를 한줄씩 추가하는 함수
+function log(text){
+	document.getElementById("log").textContent += text +"\n";
+}
 
+// 로그 영역 버튼을 눌러 걸린 시간을 비교
+function clearLog(){
+	document.getElementById("log").textContent = "";
+}
 
+// 요청을 보내는 공통 함수
+// name	: 어떤 요청 데이터인지 구분하기 위한 이름
+// sec	: 톰캣 서버가 몇초동안 일을 할지 
+async function callApi(name, sec){
+	const res = await fetch(`slow.jsp?name=${encodeURIComponent(name)}&sec=${sec}`);
+	
+	// 실생할 코드가 한줄이면 중괄호 생략해서 요청 상태 검사 작성
+	if(!res.ok){
+		throw new Error(`요청 실패(${res.status})`);
+	}
+	
+	return await res.json();	
+	
+}
 
+// await 키워드를 연달아 사용하면 각 단계가 끝나야 다음 단계로 넘어감
+async function 순차실행(){
+	clearLog();
+	
+	const start = Date.now();	// 시작 시간 저장
+	
+	log("순차 실행 시작");
+	
+	try {
+		// 첫번째 요청이 끝날때까지 기다림
+		const a = await callApi("회원정보", 1);		
+		log("   " + a.name + " 완료");
+		
+		// 첫번째 요청이 끝난 뒤 두번째 요청 시작
+		const b = await callApi("게시글", 1);
+		log("   " + b.name + " 완료");
+		
+		// 두번째 요청이 끝난 뒤 세번째 요청 시작
+		const c = await callApi("댓글", 1);
+		log("   " + c.name + " 완료");
+		
+		// 총 걸린시간 계산해서 출력
+		log("총 걸린 시간: " + ((Date.now() - start) / 1000).toFixed(1) + "초");
+	} catch (e) {
+		log("오류 발생: " + e.message);
+	}
+}
+async function 동시실행(){
+	clearLog();
+	
+	const start = Date.now();	// 시작 시간 저장
+	
+	log("순차 실행 시작");
+	
+	try {
+		const [a, b, c] = await Promise.all([
+			callApi("회원정보", 1),
+			callApi("게시글", 1),
+			callApi("댓글", 1)
+		]);	
+		log("   " + a.name + " 완료");
+		log("   " + b.name + " 완료");
+		log("   " + c.name + " 완료");
+		
+		// 총 걸린시간 계산해서 출력
+		log("총 걸린 시간: " + ((Date.now() - start) / 1000).toFixed(1) + "초");
+	} catch (e) {
+		log("오류 발생: " + e.message);
+	}
+}
 
 
 

@@ -112,7 +112,50 @@
 		  POST  요청 :  주소  save.jsp
 		                본문  {"title":"제목","content":"내용"}
 */
-
+async function save(){
+	const btn = document.getElementById("saveBtn");
+	const result = document.getElementById("result");
+		
+	// 중복 처리 방지를 위한 btn 비활성화, 처리 중임을 알림
+	if(btn.disabled) {
+		return;
+	}
+	
+	btn.disabled = true;
+	btn.textContent = "저장 중...";
+	result.textContent = "";
+	
+	try {
+		const data = { title:document.getElementById("title").value, 
+					content:document.getElementById("content").value };
+		
+		// POST 방식으로 요청 보내기
+		// fetch 함수의 두번째 매개변수로 options 객체를 통해 요청 방식 설정
+		const res = await fetch("save.jsp", {
+			method:"POST",
+			headers:{"Content-Type":"application/json"},
+			body:JSON.stringify(data)
+		});
+		
+		// 상태 검사
+		if(!res.ok) {
+			throw new Error(`저장 실패 (${res.status})`);
+		}
+		
+		// 응답 받은 문자열 데이터를 객체로 변환
+		const json = await res.json();
+		
+		result.textContent = "저장 성공, 서버가 받은 데이터: " + JSON.stringify(json.received);
+		
+	} catch (e) {
+		result.textContent = "저장에 실패 했습니다.";
+	} finally{
+		btn.disabled = false;
+		btn.textContent = "저장";
+	}
+	
+	
+}
 
 
 

@@ -17,3 +17,16 @@
      slow.jsp?name=회원정보&sec=1   ->  1초 뒤에 응답
      slow.jsp?name=게시글&sec=2     ->  2초 뒤에 응답
 --%>
+<%
+	request.setCharacterEncoding("utf-8");
+
+	String name = request.getParameter("name");
+
+	String secStr = request.getParameter("sec");
+	
+	int sec = (secStr == null) ? 1 : Integer.parseInt(secStr);
+	
+	Thread.sleep(sec * 1000l);
+	
+%>
+{"name":"<%= name %>", "sec":<%= sec %>}

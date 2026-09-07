@@ -34,3 +34,24 @@
      본문 :  {"title":"제목","content":"내용"}
      읽기 :  request.getReader() 로 통째로 읽은 뒤 직접 해석
 --%>
+<%
+	request.setCharacterEncoding("utf-8");
+	// 요청 메세지 중에서 헤더 영역과 본문 영역 중 본문 영역의 데이터를 한줄씩 읽어서 담을 공간 선언
+	StringBuilder sb = new StringBuilder();
+
+	// 요청 본문 영역에서 입력 스트림 통로를 얻어 끝까지 반복해서 읽기
+	try(BufferedReader reader = request.getReader()){
+		String line;
+		while((line = reader.readLine()) != null){
+			sb.append(line);
+		}
+	}
+	
+	// 읽어 들인 문자열 전체를 저장
+	String jsonBody = sb.toString();
+	
+	Thread.sleep(1000);
+	
+	// JSONObject 타입으로 응답
+%>
+{"success":true,"received":<%= jsonBody %>}
