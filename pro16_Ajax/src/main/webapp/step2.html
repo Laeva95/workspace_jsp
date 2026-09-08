@@ -162,15 +162,88 @@
 	//===================================================================
 	//   async 를 붙였으므로 이 함수 안에서 await 를 사용할 수 있습니다.
 	async function 조회(){
+		// 입력한 도시 이름 가져오기
+		const 도시 = document.getElementById("city").value.trim();
 		
-
+		const 결과영역 = document.getElementById("result");
+		const 버튼 = document.getElementById("btn");
+		
+		if(도시 === ""){
+			결과영역.innerHTML = '<span class="err">도시 이름을 입력하세요.</span>';
+			return;
+		}
+		
+		버튼.disabled = true;
+		결과영역.textContent = "날씨를 불러오는 중입니다......";
+		
+		try {
+			const 지오주소 = `https://geocoding-api.open-meteo.com/v1/search`
+			    		+ `?name=${encodeURIComponent(도시)}`
+			    		+ `&count=1`
+			    		+ `&language=ko`
+			    		+ `&format=json`;
+			
+			const 지오응답 = await fetch(지오주소);
+			
+			if(!지오응답.ok){
+				throw new Error(`지오코딩 요청 실패 ${지오응답.status}`);	
+			}
+			
+			const 지오데이터 = await 지오응답.json();
+			
+			if(!지오데이터.results?.length){
+				throw new Error(`도시 정보를 조회 할 수 없습니다.`);
+			}
+			
+			const 장소 = 지오데이터.results[0];
+			
+			const 위도 = 장소.latitude;
+			const 경도 = 장소.longitude;
+			
+			const 날씨주소 = `https://api.open-meteo.com/v1/forecast`
+				+ `?latitude=${위도}`
+				+ `&longitude=${경도}`
+				+ `&current=temperature_2m,relative_humidity_2m,apparent_temperature,wind_speed_10m`;
+				
+			const 날씨응답 = await fetch(날씨주소);
+			
+			if(!날씨응답.ok) {
+				throw new Error(`날씨 요청 실패 ${날씨응답.status}`);
+			}
+			
+			const 날씨데이터 = await 날씨응답.json();
+			
+			const 현재 = 날씨데이터.current;
+			
+			결과영역.innerHTML = `
+                <div class="city">${장소.name} (${장소.country_code})</div>
+                <div class="temp">${현재.temperature_2m} ℃</div>
+                <div class="sub">
+                    체감온도 ${현재.apparent_temperature} ℃
+                    <br>
+                    습도 ${현재.relative_humidity_2m} %
+                    <br>
+                    풍속 ${현재.wind_speed_10m} m/s
+                    <br>
+                    좌표 (${위도}, ${경도})
+                    <br>
+                    기준 시각 ${현재.time}
+                </div>
+            `;
+		} catch (e) {
+			결과영역.innerHTML = `<span class="err">날씨 조회에 실패했습니다. ${e.message}</span>`
+							+ `<div class="sub">도시명을 영문으로 입력하세요. 예: Seoul, Busan</div>`;
+			console.log(e.message);
+		} finally{
+			버튼.disabled = false;
+		}
 	}
 
 
 	//===================================================================
 	//2. 조회 버튼에 클릭 이벤트를 등록합니다.
 	//===================================================================
-	document.getElementById("btn").addEventListener("click", 조회);
+	 document.getElementById("btn").addEventListener("click", 조회());
 
 
 	//===================================================================
@@ -220,7 +293,7 @@
 			찾아낸 목록의 각 칸에 대해 같은 작업을 반복합니다.
 			여기서는 span 8개 각각에 클릭 이벤트를 하나씩 등록합니다.
 	*/
-	document.querySelectorAll(".quick span").forEach((el) => {
+	document.querySelectorAll(".quick span").forEach(el => {
 		el.addEventListener("click", () => {
 			document.getElementById("city").value = el.dataset.name;
 			조회();
